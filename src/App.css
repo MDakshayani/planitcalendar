@@ -1,0 +1,399 @@
+/* ===== Base Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  background-color: #f0f4f8;
+  color: #333;
+}
+
+/* ===== App Wrapper ===== */
+.app-wrapper {
+  min-height: 100vh;
+  background-color: #f0f4f8;
+  color: #333;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.app-wrapper.dark {
+  background-color: #1a1a2e;
+  color: #e0e0e0;
+}
+
+/* ===== Header ===== */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  background-color: #2c3e7a;
+  color: white;
+}
+
+.app-wrapper.dark .app-header {
+  background-color: #0f0f1a;
+}
+
+.app-header h1 {
+  font-size: 1.5rem;
+}
+
+.theme-btn {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+}
+
+.theme-btn:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* ===== Main Layout ===== */
+.app-main {
+  display: flex;
+  gap: 24px;
+  padding: 24px 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ===== Calendar Container ===== */
+.calendar-container {
+  flex: 2;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 24px rgba(44, 62, 122, 0.12), 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.app-wrapper.dark .calendar-container {
+  background: #16213e;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* ===== Hero Image ===== */
+.calendar-hero {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* ===== Month Navigation ===== */
+.calendar-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background-color: #2c3e7a;
+  color: white;
+}
+
+.app-wrapper.dark .calendar-nav {
+  background-color: #0f3460;
+}
+
+.month-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.nav-btn {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-btn:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* ===== Calendar Grid ===== */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  padding: 16px 20px;
+}
+
+/* Day of week headers */
+.day-header {
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: #888;
+  padding: 8px 0;
+  text-transform: uppercase;
+}
+
+.app-wrapper.dark .day-header {
+  color: #aaa;
+}
+
+/* ===== Day Cells ===== */
+.day-cell {
+  text-align: center;
+  padding: 10px 6px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background-color 0.25s, transform 0.2s, box-shadow 0.2s;
+  user-select: none;
+}
+
+.day-cell:hover:not(.empty) {
+  background-color: #dce8ff;
+  transform: scale(1.08);
+  box-shadow: 0 2px 8px rgba(44, 62, 122, 0.15);
+}
+
+.app-wrapper.dark .day-cell:hover:not(.empty) {
+  background-color: #1e3a5f;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Empty placeholder cells */
+.day-cell.empty {
+  cursor: default;
+}
+
+/* Today's date */
+.day-cell.today {
+  border: 2px solid #2c3e7a;
+  font-weight: 700;
+  color: #2c3e7a;
+}
+
+.app-wrapper.dark .day-cell.today {
+  border-color: #4a90d9;
+  color: #4a90d9;
+}
+
+/* Selected start/end dates */
+.day-cell.selected {
+  background-color: #2c3e7a;
+  color: white;
+  font-weight: 700;
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(44, 62, 122, 0.5);
+}
+
+.app-wrapper.dark .day-cell.selected {
+  background-color: #4a90d9;
+  box-shadow: 0 2px 8px rgba(74, 144, 217, 0.5);
+}
+
+/* Dates in between start and end */
+.day-cell.in-range {
+  background-color: #c8d9f5;
+  color: #2c3e7a;
+  border-radius: 0;
+}
+
+.app-wrapper.dark .day-cell.in-range {
+  background-color: #1e3a5f;
+  color: #a0c4f1;
+}
+
+/* ===== Range Info Bar ===== */
+.range-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  font-size: 0.85rem;
+  background-color: #f0f5ff;
+  border-top: 1px solid #dce8ff;
+}
+
+.range-label {
+  color: #888;
+  font-weight: 500;
+}
+
+.range-value {
+  font-weight: 700;
+  color: #2c3e7a;
+  font-size: 0.95rem;
+}
+
+.range-value.muted {
+  color: #aab;
+  font-weight: 400;
+}
+
+.app-wrapper.dark .range-info {
+  background-color: #0f1e3a;
+  border-top-color: #1e3a5f;
+}
+
+.app-wrapper.dark .range-label {
+  color: #778;
+}
+
+.app-wrapper.dark .range-value {
+  color: #4a90d9;
+}
+
+.app-wrapper.dark .range-value.muted {
+  color: #556;
+}
+
+/* ===== Notes Container ===== */
+.notes-container {
+  flex: 1;
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.app-wrapper.dark .notes-container {
+  background: #16213e;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.notes-container h3 {
+  font-size: 1.1rem;
+  color: #2c3e7a;
+}
+
+.app-wrapper.dark .notes-container h3 {
+  color: #4a90d9;
+}
+
+.notes-textarea {
+  width: 100%;
+  resize: vertical;
+  padding: 12px;
+  border: 1px solid #dce8ff;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  background-color: #f7f9ff;
+  color: #333;
+  transition: border-color 0.2s;
+  outline: none;
+}
+
+.notes-textarea:focus {
+  border-color: #2c3e7a;
+}
+
+.app-wrapper.dark .notes-textarea {
+  background-color: #0f1e3a;
+  border-color: #1e3a5f;
+  color: #e0e0e0;
+}
+
+.app-wrapper.dark .notes-textarea:focus {
+  border-color: #4a90d9;
+}
+
+/* ===== Notes Buttons ===== */
+.notes-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.save-btn,
+.clear-btn {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background-color 0.2s, transform 0.15s;
+}
+
+.save-btn {
+  background-color: #344cb7;
+  color: white;
+}
+
+.save-btn:hover {
+  background-color: #1e2d5e;
+  transform: translateY(-1px);
+}
+
+.clear-btn {
+  background-color: #f0f4f8;
+  color: #555;
+  border: 1px solid #ddd;
+}
+
+.clear-btn:hover {
+  background-color: #e0e8f0;
+  transform: translateY(-1px);
+}
+
+.app-wrapper.dark .clear-btn {
+  background-color: #1e3a5f;
+  color: #aaa;
+  border-color: #2a4a7f;
+}
+
+.saved-msg {
+  font-size: 0.85rem;
+  color: #2e7d32;
+  text-align: center;
+}
+
+.app-wrapper.dark .saved-msg {
+  color: #66bb6a;
+}
+
+/* ===== Responsive: Mobile ===== */
+@media (max-width: 768px) {
+  .app-main {
+    flex-direction: column;
+    padding: 16px;
+  }
+
+  .app-header {
+    padding: 12px 16px;
+  }
+
+  .app-header h1 {
+    font-size: 1.2rem;
+  }
+
+  .calendar-hero {
+    height: 130px;
+  }
+
+  .day-cell {
+    padding: 8px 2px;
+    font-size: 0.85rem;
+  }
+}
