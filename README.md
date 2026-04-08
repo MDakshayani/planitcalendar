@@ -63,7 +63,7 @@ I also chose a student/coding-themed image to match the context of learning and 
 
 ## Live Demo
 
-(Add your deployed Vercel link here)
+(https://planitcalendar.vercel.app/)
 
 ## Notes
 
